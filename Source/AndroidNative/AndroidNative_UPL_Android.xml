@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <init>
+    <log text="AndroidNative -> Adding properties to Manifest and Gradle"/>
+    <trace enable="true"/>
+    
+    <setBool result="bSupported" value="false"/>
+
+    <isArch arch="armeabi-v7a">
+      <setBool result="bSupported" value="true"/>
+    </isArch>
+
+    <isArch arch="arm64-v8a">
+      <setBool result="bSupported" value="true"/>
+    </isArch>
+
+    <if condition="bSupported">
+      <false>
+        <log text="WARNING: this architecture is not supported!"/>
+      </false>
+    </if>
+
+  </init>
+
+
+  <prebuildCopies>
+    <copyDir src="$S(PluginDir)/Private/Java" dst="$S(BuildDir)/src/com/Plugins/AndroidNative" />
+  </prebuildCopies>
+
+
+  <gradleProperties>
+    <insert>
+      android.useAndroidX=true
+      android.enableJetifier=true
+    </insert>
+  </gradleProperties>
+
+
+  <proguardAdditions>
+    <insert>
+      -dontwarn com.Plugins.**
+      -keep class com.Plugins.** { *; }
+      -keep interface com.Plugins.** { *; }
+      -keep public class com.Plugins.AndroidNative.** { public protected *; }
+
+      -dontwarn androidx.**
+      -keep class androidx.** { *; }
+      -keep interface androidx.** { *; }
+
+    </insert>
+  </proguardAdditions>
+
+
+  <androidManifestUpdates>
+
+    <addPermission android:name="com.android.permission.READ_EXTERNAL_STORAGE"/>
+    <addPermission android:name="com.android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+  </androidManifestUpdates>
+
+
+  <buildGradleAdditions>
+    <insert>
+
+      ext {
+          android {
+              buildTypes {
+                  release {
+                      minifyEnabled false
+                  }
+              }
+          }
+      }
+
+      repositories {
+        mavenCentral()
+        jcenter()
+      }
+
+      <!-- Here you can specify your own dependencies for downloading *.AAR libraries over the Internet. -->
+      dependencies {
+        implementation 'com.google.guava:guava:28.2-android'
+      }
+
+    </insert>
+  </buildGradleAdditions>
+
+
+  <baseBuildGradleAdditions>
+    <insert>
+      allprojects {
+        def mappings = [
+          'android.support.annotation': 'androidx.annotation',
+          'android.arch.lifecycle': 'androidx.lifecycle',
+          'android.support.v4.app.NotificationCompat': 'androidx.core.app.NotificationCompat',
+          'android.support.v4.app.ActivityCompat': 'androidx.core.app.ActivityCompat',
+          'android.support.v4.content.ContextCompat': 'androidx.core.content.ContextCompat',
+          'android.support.v4.app.NotificationManagerCompat': 'androidx.core.app.NotificationManagerCompat',
+          'android.support.v4.content.FileProvider': 'androidx.core.content.FileProvider',
+          'android.support.v13.app.FragmentCompat': 'androidx.legacy.app.FragmentCompat',
+          'android.arch.lifecycle.Lifecycle': 'androidx.lifecycle.Lifecycle',
+          'android.arch.lifecycle.LifecycleObserver': 'androidx.lifecycle.LifecycleObserver',
+          'android.arch.lifecycle.OnLifecycleEvent': 'androidx.lifecycle.OnLifecycleEvent',
+          'android.arch.lifecycle.ProcessLifecycleOwner': 'androidx.lifecycle.ProcessLifecycleOwner',
+        ]
+
+      beforeEvaluate { project ->
+        project.rootProject.projectDir.traverse(type: groovy.io.FileType.FILES, nameFilter: ~/.*\.java$/) { f ->
+            mappings.each { entry ->
+              if (f.getText('UTF-8').contains(entry.key)) {
+                println "Updating ${entry.key} to ${entry.value} in file ${f}"
+                ant.replace(file: f, token: entry.key, value: entry.value)
+              }
+            }
+          }
+        }
+      }
+    </insert>
+  </baseBuildGradleAdditions>
+
+
+</root>
