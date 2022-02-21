@@ -12,6 +12,8 @@
     <br/>
     <a href="https://github.com/gtreshchev/AndroidNative/wiki"><strong>Explore the docs »</strong></a>
     .
+	<br/>
+    <br/>
     <a href="https://github.com/gtreshchev/AndroidNative/releases">Releases</a>
     .
     <a href="https://t.me/unrealblog">Support Chat</a>
