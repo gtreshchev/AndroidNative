@@ -11,9 +11,6 @@
     <br/>
     <br/>
     <a href="https://github.com/gtreshchev/AndroidNative/wiki"><strong>Explore the docs »</strong></a>
-    <br/>
-    <br/>
-    <a href="https://unrealengine.com/marketplace/product/android-native">Marketplace</a>
     .
     <a href="https://github.com/gtreshchev/AndroidNative/releases">Releases</a>
     .
