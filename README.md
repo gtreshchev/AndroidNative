@@ -4,7 +4,7 @@
     <img src="Resources/Icon128.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Android Native</h3>
+<h3 align="center">Android Native</h3>
 
   <p align="center">
     Advanced interaction with Android device
@@ -18,12 +18,12 @@
     .
     <a href="https://t.me/unrealblog">Support Chat</a>
   </p>
-</p>
 
 ## Features
-- Easy and convenient Java method call 
-- Lots of helper features
-- Some out-of-the-box functions
+
+- Easy and convenient Java method call
+- Lots of helper methods
+- Some out-of-the-box functions to interact with Android
 
 ## Legal info
 
