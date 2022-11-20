@@ -41,7 +41,7 @@ FBaseDeviceInfo UAndroidNativeLibrary::GetBaseDeviceInfo()
 		Result.LanguageCode = MoveTemp(LanguageCode);
 	}
 
-	return MoveTemp(Result);
+	return Result;
 }
 
 EAndroidTheme UAndroidNativeLibrary::GetCurrentSystemTheme()

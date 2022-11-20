@@ -1,24 +1,24 @@
 {
-	"FileVersion": 3,
-	"Version": 1,
-	"VersionName": "1.0",
-	"FriendlyName": "Android Native",
-	"Description": "Advanced interaction with Android device.",
-	"Category": "Code Plugins",
-	"CreatedBy": "Georgy Treshchev",
-	"CreatedByURL": "https://github.com/gtreshchev",
-	"DocsURL": "https://github.com/gtreshchev/AndroidNative/wiki",
-	"SupportURL": "https://telegram.me/gtreshchev",
-	"CanContainContent": false,
-	"IsBetaVersion": false,
-	"IsExperimentalVersion": false,
-	"Installed": true,
-	"RequiresBuildPlatform": true,
-	"Modules": [
-		{
-			"Name": "AndroidNative",
-			"Type": "Runtime",
-			"LoadingPhase": "Default"
-		}
-	]
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0",
+  "FriendlyName": "Android Native",
+  "Description": "Advanced interaction with Android device.",
+  "Category": "Code Plugins",
+  "CreatedBy": "Georgy Treshchev",
+  "CreatedByURL": "https://github.com/gtreshchev",
+  "DocsURL": "https://github.com/gtreshchev/AndroidNative/wiki",
+  "SupportURL": "https://telegram.me/gtreshchev",
+  "CanContainContent": false,
+  "IsBetaVersion": false,
+  "IsExperimentalVersion": false,
+  "Installed": true,
+  "RequiresBuildPlatform": true,
+  "Modules": [
+    {
+      "Name": "AndroidNative",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ]
 }
