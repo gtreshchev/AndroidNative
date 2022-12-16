@@ -54,6 +54,17 @@
 
 
   <androidManifestUpdates>
+  
+    <!-- For target SDK 31 update the SplashActivity activity -->
+    <loopElements tag="activity">
+      <setStringFromAttribute result="activityName" tag="$" name="android:name"/>
+      <setBoolIsEqual result="bSplashActivity" arg1="$S(activityName)" arg2="com.epicgames.ue4.SplashActivity"/>
+      <if condition="bSplashActivity">
+        <true>
+          <addAttribute tag="$" name="android:exported" value="true"/>
+        </true>
+      </if>
+    </loopElements>
 
     <addPermission android:name="com.android.permission.READ_EXTERNAL_STORAGE"/>
     <addPermission android:name="com.android.permission.WRITE_EXTERNAL_STORAGE"/>
