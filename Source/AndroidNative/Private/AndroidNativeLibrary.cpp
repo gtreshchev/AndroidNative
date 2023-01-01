@@ -1,4 +1,4 @@
-// Georgy Treshchev 2022.
+// Georgy Treshchev 2023.
 
 #include "AndroidNativeLibrary.h"
 #include "AndroidNative.h"
