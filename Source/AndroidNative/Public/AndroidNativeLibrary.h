@@ -60,6 +60,13 @@ class ANDROIDNATIVE_API UAndroidNativeLibrary : public UBlueprintFunctionLibrary
 	GENERATED_BODY()
 
 public:
+	
+	/**
+	 * Start NSD Service on defined port with "NdiNsdService" name and "_ndi._tcp." type.
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Android Native Library|Services|NSD")
+	static void EnableNsdService(int32 InPort);
+	
 	/**
 	 * Check if the internet is available at the moment
 	 */

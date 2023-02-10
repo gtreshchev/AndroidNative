@@ -1,4 +1,5 @@
 // Georgy Treshchev 2023.
+// FF Reality 
 
 package com.Plugins.AndroidNative;
 
@@ -18,9 +19,47 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import android.content.res.Configuration;
 
+// NSD Service
+import android.os.IBinder;
+import android.app.Service;
+import android.net.nsd.NsdManager;
+import android.net.nsd.NsdServiceInfo;
 
 @Keep
 public class DeviceInfo {
+
+	static NsdManager nsdManager;
+	static NsdServiceInfo nsdServiceInfo;
+	static NsdManager.RegistrationListener listener;
+	static Context context;
+
+@Keep
+	public static void startNsdService(final Activity activity, int Port) {
+				
+		context = activity;
+				
+		nsdManager = (NsdManager)context.getSystemService(Context.NSD_SERVICE);
+
+		nsdServiceInfo = new NsdServiceInfo();
+		nsdServiceInfo.setServiceName("NdiNsdService");
+		nsdServiceInfo.setServiceType("_ndi._tcp.");
+		nsdServiceInfo.setPort(Port);
+
+		nsdManager.registerService(nsdServiceInfo, NsdManager.PROTOCOL_DNS_SD, new NsdManager.RegistrationListener() {
+
+			@Override
+			public void onRegistrationFailed(NsdServiceInfo nsdServiceInfo, int i) {}
+
+			@Override
+			public void onUnregistrationFailed(NsdServiceInfo nsdServiceInfo, int i) {}
+
+			@Override
+			public void onServiceRegistered(NsdServiceInfo nsdServiceInfo) {}
+
+			@Override
+			public void onServiceUnregistered(NsdServiceInfo nsdServiceInfo) {}
+		});
+	}	
 
     @Keep
     public static String GetGeoLocation(final Activity activity)
@@ -128,10 +167,4 @@ public class DeviceInfo {
 	public static String GetLanguageCode()	{
 		return ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration()).get(0).getDefault().toLanguageTag();
 	}
-
 }
-
-
-
-
-
