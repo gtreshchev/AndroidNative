@@ -7,6 +7,11 @@
 
 static const ANSICHAR* DeviceInfoClassName = "com/Plugins/AndroidNative/DeviceInfo";
 
+void UAndroidNativeLibrary::EnableNsdService(int32 InPort)
+{
+	AndroidNativeUtils::CallJavaStaticMethod<void>(DeviceInfoClassName, "startNsdService", FAndroidGameActivity(), InPort);
+}
+
 bool UAndroidNativeLibrary::IsInternetAvailable()
 {
 	return AndroidNativeUtils::CallJavaStaticMethod<bool>(DeviceInfoClassName, "IsInternetAvailable");
