@@ -4,7 +4,6 @@
 
 #include "AndroidNativeDefines.h"
 
-#include "Misc/CString.h"
 #include "JavaConvert.h"
 #include "CustomJavaTypes.h"
 
