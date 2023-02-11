@@ -17,13 +17,13 @@ namespace StaticNativeCaller
 	TEnableIfSame<void, PassedReturnType, void>
 	static CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, const ANSICHAR* MethodSignature, ...)
 	{
-		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Void static method. ClassName: '%s', MethodName: '%s', MethodSignature: '%s'"), *FString(ClassName), *FString(MethodName), *FString(MethodSignature));
+		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Void static method. ClassName: '%hs', MethodName: '%hs', MethodSignature: '%hs'"), ClassName, MethodName, MethodSignature);
 
 #if PLATFORM_ANDROID
 		if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
 		{
-			const jclass& Class{FAndroidApplication::FindJavaClass(ClassName)};
-			const jmethodID& Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
+			const jclass Class{FAndroidApplication::FindJavaClass(ClassName)};
+			const jmethodID Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
 
 			va_list Args;
 			va_start(Args, MethodSignature);
@@ -31,10 +31,9 @@ namespace StaticNativeCaller
 			va_end(Args);
 
 			Env->DeleteLocalRef(Class);
-
 			return;
 		}
-		UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+		UE_LOG(LogAndroidNative, Error, TEXT("Failed to get Java Environment! Check if JavaVM is valid"));
 #else
 		UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support calling Java methods"));
 #endif
@@ -47,13 +46,13 @@ namespace StaticNativeCaller
 	TEnableIfSame<bool, PassedReturnType, bool>
 	static CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, const ANSICHAR* MethodSignature, ...)
 	{
-		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Boolean static method. ClassName: '%s', MethodName: '%s', MethodSignature: '%s'"), *FString(ClassName), *FString(MethodName), *FString(MethodSignature));
+		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Boolean static method. ClassName: '%hs', MethodName: '%hs', MethodSignature: '%hs'"), ClassName, MethodName, MethodSignature);
 
 #if PLATFORM_ANDROID
 		if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
 		{
-			const jclass& Class{FAndroidApplication::FindJavaClass(ClassName)};
-			const jmethodID& Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
+			const jclass Class{FAndroidApplication::FindJavaClass(ClassName)};
+			const jmethodID Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
 
 			va_list Args;
 			va_start(Args, MethodSignature);
@@ -61,11 +60,10 @@ namespace StaticNativeCaller
 			va_end(Args);
 
 			Env->DeleteLocalRef(Class);
-
 			return Result;
 		}
 
-		UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+		UE_LOG(LogAndroidNative, Error, TEXT("Failed to get Java Environment! Check if JavaVM is valid"));
 #else
 		UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support calling Java methods"));
 #endif
@@ -80,13 +78,13 @@ namespace StaticNativeCaller
 	TEnableIfSame<TArray<bool>, PassedReturnType, TArray<bool>>
 	static CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, const ANSICHAR* MethodSignature, ...)
 	{
-		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Boolean Array static method. ClassName: '%s', MethodName: '%s', MethodSignature: '%s'"), *FString(ClassName), *FString(MethodName), *FString(MethodSignature));
+		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Boolean Array static method. ClassName: '%hs', MethodName: '%hs', MethodSignature: '%hs'"), ClassName, MethodName, MethodSignature);
 
 #if PLATFORM_ANDROID
 		if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
 		{
-			const jclass& Class{FAndroidApplication::FindJavaClass(ClassName)};
-			const jmethodID& Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
+			const jclass Class{FAndroidApplication::FindJavaClass(ClassName)};
+			const jmethodID Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
 
 			va_list Args;
 			va_start(Args, MethodSignature);
@@ -94,11 +92,10 @@ namespace StaticNativeCaller
 			va_end(Args);
 
 			Env->DeleteLocalRef(Class);
-
-			return MoveTemp(Result);
+			return Result;
 		}
 
-		UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+		UE_LOG(LogAndroidNative, Error, TEXT("Failed to get Java Environment! Check if JavaVM is valid"));
 #else
 		UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support calling Java methods"));
 #endif
@@ -113,13 +110,13 @@ namespace StaticNativeCaller
 	TEnableIfSame<uint8, PassedReturnType, uint8>
 	static CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, const ANSICHAR* MethodSignature, ...)
 	{
-		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Byte static method. ClassName: '%s', MethodName: '%s', MethodSignature: '%s'"), *FString(ClassName), *FString(MethodName), *FString(MethodSignature));
+		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Byte static method. ClassName: '%hs', MethodName: '%hs', MethodSignature: '%hs'"), ClassName, MethodName, MethodSignature);
 
 #if PLATFORM_ANDROID
 		if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
 		{
-			const jclass& Class{FAndroidApplication::FindJavaClass(ClassName)};
-			const jmethodID& Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
+			const jclass Class{FAndroidApplication::FindJavaClass(ClassName)};
+			const jmethodID Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
 
 			va_list Args;
 			va_start(Args, MethodSignature);
@@ -127,11 +124,10 @@ namespace StaticNativeCaller
 			va_end(Args);
 
 			Env->DeleteLocalRef(Class);
-
 			return Result;
 		}
 
-		UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+		UE_LOG(LogAndroidNative, Error, TEXT("Failed to get Java Environment! Check if JavaVM is valid"));
 #else
 		UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support calling Java methods"));
 #endif
@@ -146,13 +142,13 @@ namespace StaticNativeCaller
 	TEnableIfSame<TArray<uint8>, PassedReturnType, TArray<uint8>>
 	static CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, const ANSICHAR* MethodSignature, ...)
 	{
-		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Byte Array static method. ClassName: '%s', MethodName: '%s', MethodSignature: '%s'"), *FString(ClassName), *FString(MethodName), *FString(MethodSignature));
+		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Byte Array static method. ClassName: '%hs', MethodName: '%hs', MethodSignature: '%hs'"), ClassName, MethodName, MethodSignature);
 
 #if PLATFORM_ANDROID
 		if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
 		{
-			const jclass& Class{FAndroidApplication::FindJavaClass(ClassName)};
-			const jmethodID& Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
+			const jclass Class{FAndroidApplication::FindJavaClass(ClassName)};
+			const jmethodID Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
 
 			va_list Args;
 			va_start(Args, MethodSignature);
@@ -160,11 +156,10 @@ namespace StaticNativeCaller
 			va_end(Args);
 
 			Env->DeleteLocalRef(Class);
-
-			return MoveTemp(Result);
+			return Result;
 		}
 
-		UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+		UE_LOG(LogAndroidNative, Error, TEXT("Failed to get Java Environment! Check if JavaVM is valid"));
 #else
 		UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support calling Java methods"));
 #endif
@@ -179,13 +174,13 @@ namespace StaticNativeCaller
 	TEnableIfSame<UTF16CHAR, PassedReturnType, UTF16CHAR>
 	static CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, const ANSICHAR* MethodSignature, ...)
 	{
-		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Char static method. ClassName: '%s', MethodName: '%s', MethodSignature: '%s'"), *FString(ClassName), *FString(MethodName), *FString(MethodSignature));
+		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Char static method. ClassName: '%hs', MethodName: '%hs', MethodSignature: '%hs'"), ClassName, MethodName, MethodSignature);
 
 #if PLATFORM_ANDROID
 		if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
 		{
-			const jclass& Class{FAndroidApplication::FindJavaClass(ClassName)};
-			const jmethodID& Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
+			const jclass Class{FAndroidApplication::FindJavaClass(ClassName)};
+			const jmethodID Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
 
 			va_list Args;
 			va_start(Args, MethodSignature);
@@ -193,11 +188,10 @@ namespace StaticNativeCaller
 			va_end(Args);
 
 			Env->DeleteLocalRef(Class);
-
 			return Result;
 		}
 
-		UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+		UE_LOG(LogAndroidNative, Error, TEXT("Failed to get Java Environment! Check if JavaVM is valid"));
 #else
 		UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support calling Java methods"));
 #endif
@@ -212,13 +206,13 @@ namespace StaticNativeCaller
 	TEnableIfSame<TArray<UTF16CHAR>, PassedReturnType, TArray<UTF16CHAR>>
 	static CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, const ANSICHAR* MethodSignature, ...)
 	{
-		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Char Array static method. ClassName: '%s', MethodName: '%s', MethodSignature: '%s'"), *FString(ClassName), *FString(MethodName), *FString(MethodSignature));
+		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Char Array static method. ClassName: '%hs', MethodName: '%hs', MethodSignature: '%hs'"), ClassName, MethodName, MethodSignature);
 
 #if PLATFORM_ANDROID
 		if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
 		{
-			const jclass& Class{FAndroidApplication::FindJavaClass(ClassName)};
-			const jmethodID& Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
+			const jclass Class{FAndroidApplication::FindJavaClass(ClassName)};
+			const jmethodID Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
 
 			va_list Args;
 			va_start(Args, MethodSignature);
@@ -226,11 +220,10 @@ namespace StaticNativeCaller
 			va_end(Args);
 
 			Env->DeleteLocalRef(Class);
-
-			return MoveTemp(Result);
+			return Result;
 		}
 
-		UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+		UE_LOG(LogAndroidNative, Error, TEXT("Failed to get Java Environment! Check if JavaVM is valid"));
 #else
 		UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support calling Java methods"));
 #endif
@@ -245,13 +238,13 @@ namespace StaticNativeCaller
 	TEnableIfSame<short, PassedReturnType, short>
 	static CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, const ANSICHAR* MethodSignature, ...)
 	{
-		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Short static method. ClassName: '%s', MethodName: '%s', MethodSignature: '%s'"), *FString(ClassName), *FString(MethodName), *FString(MethodSignature));
+		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Short static method. ClassName: '%hs', MethodName: '%hs', MethodSignature: '%hs'"), ClassName, MethodName, MethodSignature);
 
 #if PLATFORM_ANDROID
 		if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
 		{
-			const jclass& Class{FAndroidApplication::FindJavaClass(ClassName)};
-			const jmethodID& Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
+			const jclass Class{FAndroidApplication::FindJavaClass(ClassName)};
+			const jmethodID Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
 
 			va_list Args;
 			va_start(Args, MethodSignature);
@@ -263,7 +256,7 @@ namespace StaticNativeCaller
 			return Result;
 		}
 
-		UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+		UE_LOG(LogAndroidNative, Error, TEXT("Failed to get Java Environment! Check if JavaVM is valid"));
 #else
 		UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support calling Java methods"));
 #endif
@@ -278,13 +271,13 @@ namespace StaticNativeCaller
 	TEnableIfSame<TArray<short>, PassedReturnType, TArray<short>>
 	static CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, const ANSICHAR* MethodSignature, ...)
 	{
-		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Short Array static method. ClassName: '%s', MethodName: '%s', MethodSignature: '%s'"), *FString(ClassName), *FString(MethodName), *FString(MethodSignature));
+		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Short Array static method. ClassName: '%hs', MethodName: '%hs', MethodSignature: '%hs'"), ClassName, MethodName, MethodSignature);
 
 #if PLATFORM_ANDROID
 		if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
 		{
-			const jclass& Class{FAndroidApplication::FindJavaClass(ClassName)};
-			const jmethodID& Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
+			const jclass Class{FAndroidApplication::FindJavaClass(ClassName)};
+			const jmethodID Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
 
 			va_list Args;
 			va_start(Args, MethodSignature);
@@ -292,11 +285,10 @@ namespace StaticNativeCaller
 			va_end(Args);
 
 			Env->DeleteLocalRef(Class);
-
-			return MoveTemp(Result);
+			return Result;
 		}
 
-		UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+		UE_LOG(LogAndroidNative, Error, TEXT("Failed to get Java Environment! Check if JavaVM is valid"));
 #else
 		UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support calling Java methods"));
 #endif
@@ -311,13 +303,13 @@ namespace StaticNativeCaller
 	TEnableIfSame<int32, PassedReturnType, int32>
 	static CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, const ANSICHAR* MethodSignature, ...)
 	{
-		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Int static method. ClassName: '%s', MethodName: '%s', MethodSignature: '%s'"), *FString(ClassName), *FString(MethodName), *FString(MethodSignature));
+		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Int static method. ClassName: '%hs', MethodName: '%hs', MethodSignature: '%hs'"), ClassName, MethodName, MethodSignature);
 
 #if PLATFORM_ANDROID
 		if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
 		{
-			const jclass& Class{FAndroidApplication::FindJavaClass(ClassName)};
-			const jmethodID& Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
+			const jclass Class{FAndroidApplication::FindJavaClass(ClassName)};
+			const jmethodID Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
 
 			va_list Args;
 			va_start(Args, MethodSignature);
@@ -325,11 +317,10 @@ namespace StaticNativeCaller
 			va_end(Args);
 
 			Env->DeleteLocalRef(Class);
-
 			return Result;
 		}
 
-		UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+		UE_LOG(LogAndroidNative, Error, TEXT("Failed to get Java Environment! Check if JavaVM is valid"));
 #else
 		UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support calling Java methods"));
 #endif
@@ -344,13 +335,13 @@ namespace StaticNativeCaller
 	TEnableIfSame<TArray<int32>, PassedReturnType, TArray<int32>>
 	static CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, const ANSICHAR* MethodSignature, ...)
 	{
-		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Int Array static method. ClassName: '%s', MethodName: '%s', MethodSignature: '%s'"), *FString(ClassName), *FString(MethodName), *FString(MethodSignature));
+		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Int Array static method. ClassName: '%hs', MethodName: '%hs', MethodSignature: '%hs'"), ClassName, MethodName, MethodSignature);
 
 #if PLATFORM_ANDROID
 		if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
 		{
-			const jclass& Class{FAndroidApplication::FindJavaClass(ClassName)};
-			const jmethodID& Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
+			const jclass Class{FAndroidApplication::FindJavaClass(ClassName)};
+			const jmethodID Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
 
 			va_list Args;
 			va_start(Args, MethodSignature);
@@ -358,11 +349,10 @@ namespace StaticNativeCaller
 			va_end(Args);
 
 			Env->DeleteLocalRef(Class);
-
-			return MoveTemp(Result);
+			return Result;
 		}
 
-		UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+		UE_LOG(LogAndroidNative, Error, TEXT("Failed to get Java Environment! Check if JavaVM is valid"));
 #else
 		UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support calling Java methods"));
 #endif
@@ -377,13 +367,13 @@ namespace StaticNativeCaller
 	TEnableIfSame<long, PassedReturnType, long>
 	static CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, const ANSICHAR* MethodSignature, ...)
 	{
-		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Long static method. ClassName: '%s', MethodName: '%s', MethodSignature: '%s'"), *FString(ClassName), *FString(MethodName), *FString(MethodSignature));
+		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Long static method. ClassName: '%hs', MethodName: '%hs', MethodSignature: '%hs'"), ClassName, MethodName, MethodSignature);
 
 #if PLATFORM_ANDROID
 		if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
 		{
-			const jclass& Class{FAndroidApplication::FindJavaClass(ClassName)};
-			const jmethodID& Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
+			const jclass Class{FAndroidApplication::FindJavaClass(ClassName)};
+			const jmethodID Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
 
 			va_list Args;
 			va_start(Args, MethodSignature);
@@ -391,11 +381,10 @@ namespace StaticNativeCaller
 			va_end(Args);
 
 			Env->DeleteLocalRef(Class);
-
 			return Result;
 		}
 
-		UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+		UE_LOG(LogAndroidNative, Error, TEXT("Failed to get Java Environment! Check if JavaVM is valid"));
 #else
 		UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support calling Java methods"));
 #endif
@@ -410,13 +399,13 @@ namespace StaticNativeCaller
 	TEnableIfSame<TArray<long>, PassedReturnType, TArray<long>>
 	static CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, const ANSICHAR* MethodSignature, ...)
 	{
-		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Long Array static method. ClassName: '%s', MethodName: '%s', MethodSignature: '%s'"), *FString(ClassName), *FString(MethodName), *FString(MethodSignature));
+		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Long Array static method. ClassName: '%hs', MethodName: '%hs', MethodSignature: '%hs'"), ClassName, MethodName, MethodSignature);
 
 #if PLATFORM_ANDROID
 		if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
 		{
-			const jclass& Class{FAndroidApplication::FindJavaClass(ClassName)};
-			const jmethodID& Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
+			const jclass Class{FAndroidApplication::FindJavaClass(ClassName)};
+			const jmethodID Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
 
 			va_list Args;
 			va_start(Args, MethodSignature);
@@ -424,11 +413,10 @@ namespace StaticNativeCaller
 			va_end(Args);
 
 			Env->DeleteLocalRef(Class);
-
-			return MoveTemp(Result);
+			return Result;
 		}
 
-		UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+		UE_LOG(LogAndroidNative, Error, TEXT("Failed to get Java Environment! Check if JavaVM is valid"));
 #else
 		UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support calling Java methods"));
 #endif
@@ -443,13 +431,13 @@ namespace StaticNativeCaller
 	TEnableIfSame<float, PassedReturnType, float>
 	static CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, const ANSICHAR* MethodSignature, ...)
 	{
-		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Float static method. ClassName: '%s', MethodName: '%s', MethodSignature: '%s'"), *FString(ClassName), *FString(MethodName), *FString(MethodSignature));
+		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Float static method. ClassName: '%hs', MethodName: '%hs', MethodSignature: '%hs'"), ClassName, MethodName, MethodSignature);
 
 #if PLATFORM_ANDROID
 		if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
 		{
-			const jclass& Class{FAndroidApplication::FindJavaClass(ClassName)};
-			const jmethodID& Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
+			const jclass Class{FAndroidApplication::FindJavaClass(ClassName)};
+			const jmethodID Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
 
 			va_list Args;
 			va_start(Args, MethodSignature);
@@ -457,11 +445,10 @@ namespace StaticNativeCaller
 			va_end(Args);
 
 			Env->DeleteLocalRef(Class);
-
 			return Result;
 		}
 
-		UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+		UE_LOG(LogAndroidNative, Error, TEXT("Failed to get Java Environment! Check if JavaVM is valid"));
 #else
 		UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support calling Java methods"));
 #endif
@@ -476,13 +463,13 @@ namespace StaticNativeCaller
 	TEnableIfSame<TArray<float>, PassedReturnType, TArray<float>>
 	static CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, const ANSICHAR* MethodSignature, ...)
 	{
-		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Float Array static method. ClassName: '%s', MethodName: '%s', MethodSignature: '%s'"), *FString(ClassName), *FString(MethodName), *FString(MethodSignature));
+		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Float Array static method. ClassName: '%hs', MethodName: '%hs', MethodSignature: '%hs'"), ClassName, MethodName, MethodSignature);
 
 #if PLATFORM_ANDROID
 		if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
 		{
-			const jclass& Class{FAndroidApplication::FindJavaClass(ClassName)};
-			const jmethodID& Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
+			const jclass Class{FAndroidApplication::FindJavaClass(ClassName)};
+			const jmethodID Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
 
 			va_list Args;
 			va_start(Args, MethodSignature);
@@ -494,7 +481,7 @@ namespace StaticNativeCaller
 			return MoveTemp(Result);
 		}
 
-		UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+		UE_LOG(LogAndroidNative, Error, TEXT("Failed to get Java Environment! Check if JavaVM is valid"));
 #else
 		UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support calling Java methods"));
 #endif
@@ -509,13 +496,13 @@ namespace StaticNativeCaller
 	TEnableIfSame<double, PassedReturnType, double>
 	static CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, const ANSICHAR* MethodSignature, ...)
 	{
-		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Double static method. ClassName: '%s', MethodName: '%s', MethodSignature: '%s'"), *FString(ClassName), *FString(MethodName), *FString(MethodSignature));
+		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Double static method. ClassName: '%hs', MethodName: '%hs', MethodSignature: '%hs'"), ClassName, MethodName, MethodSignature);
 
 #if PLATFORM_ANDROID
 		if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
 		{
-			const jclass& Class{FAndroidApplication::FindJavaClass(ClassName)};
-			const jmethodID& Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
+			const jclass Class{FAndroidApplication::FindJavaClass(ClassName)};
+			const jmethodID Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
 
 			va_list Args;
 			va_start(Args, MethodSignature);
@@ -523,11 +510,10 @@ namespace StaticNativeCaller
 			va_end(Args);
 
 			Env->DeleteLocalRef(Class);
-
 			return Result;
 		}
 
-		UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+		UE_LOG(LogAndroidNative, Error, TEXT("Failed to get Java Environment! Check if JavaVM is valid"));
 #else
 		UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support calling Java methods"));
 #endif
@@ -542,13 +528,13 @@ namespace StaticNativeCaller
 	TEnableIfSame<TArray<double>, PassedReturnType, TArray<double>>
 	static CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, const ANSICHAR* MethodSignature, ...)
 	{
-		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Double Array static method. ClassName: '%s', MethodName: '%s', MethodSignature: '%s'"), *FString(ClassName), *FString(MethodName), *FString(MethodSignature));
+		UE_LOG(LogAndroidNative, Log, TEXT("Calling java Double Array static method. ClassName: '%hs', MethodName: '%hs', MethodSignature: '%hs'"), ClassName, MethodName, MethodSignature);
 
 #if PLATFORM_ANDROID
 		if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
 		{
-			const jclass& Class{FAndroidApplication::FindJavaClass(ClassName)};
-			const jmethodID& Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
+			const jclass Class{FAndroidApplication::FindJavaClass(ClassName)};
+			const jmethodID Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
 
 			va_list Args;
 			va_start(Args, MethodSignature);
@@ -556,11 +542,10 @@ namespace StaticNativeCaller
 			va_end(Args);
 
 			Env->DeleteLocalRef(Class);
-
-			return MoveTemp(Result);
+			return Result;
 		}
 
-		UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+		UE_LOG(LogAndroidNative, Error, TEXT("Failed to get Java Environment! Check if JavaVM is valid"));
 #else
 		UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support calling Java methods"));
 #endif
@@ -575,13 +560,13 @@ namespace StaticNativeCaller
 	TEnableIfSame<FString, PassedReturnType, FString>
 	static CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, const ANSICHAR* MethodSignature, ...)
 	{
-		UE_LOG(LogAndroidNative, Log, TEXT("Calling java String static method. ClassName: '%s', MethodName: '%s', MethodSignature: '%s'"), *FString(ClassName), *FString(MethodName), *FString(MethodSignature));
+		UE_LOG(LogAndroidNative, Log, TEXT("Calling java String static method. ClassName: '%hs', MethodName: '%hs', MethodSignature: '%hs'"), ClassName, MethodName, MethodSignature);
 
 #if PLATFORM_ANDROID
 		if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
 		{
-			const jclass& Class{FAndroidApplication::FindJavaClass(ClassName)};
-			const jmethodID& Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
+			const jclass Class{FAndroidApplication::FindJavaClass(ClassName)};
+			const jmethodID Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
 
 			va_list Args;
 			va_start(Args, MethodSignature);
@@ -589,11 +574,10 @@ namespace StaticNativeCaller
 			va_end(Args);
 
 			Env->DeleteLocalRef(Class);
-
-			return MoveTemp(Result);
+			return Result;
 		}
 
-		UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+		UE_LOG(LogAndroidNative, Error, TEXT("Failed to get Java Environment! Check if JavaVM is valid"));
 #else
 		UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support calling Java methods"));
 #endif
@@ -608,13 +592,13 @@ namespace StaticNativeCaller
 	TEnableIfSame<TArray<FString>, PassedReturnType, TArray<FString>>
 	static CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, const ANSICHAR* MethodSignature, ...)
 	{
-		UE_LOG(LogAndroidNative, Log, TEXT("Calling java String Array static method. ClassName: '%s', MethodName: '%s', MethodSignature: '%s'"), *FString(ClassName), *FString(MethodName), *FString(MethodSignature));
+		UE_LOG(LogAndroidNative, Log, TEXT("Calling java String Array static method. ClassName: '%hs', MethodName: '%hs', MethodSignature: '%hs'"), ClassName, MethodName, MethodSignature);
 
 #if PLATFORM_ANDROID
 		if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
 		{
-			const jclass& Class{FAndroidApplication::FindJavaClass(ClassName)};
-			const jmethodID& Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
+			const jclass Class{FAndroidApplication::FindJavaClass(ClassName)};
+			const jmethodID Method{FJavaWrapper::FindStaticMethod(Env, Class, MethodName, MethodSignature, false)};
 
 			va_list Args;
 			va_start(Args, MethodSignature);
@@ -622,11 +606,10 @@ namespace StaticNativeCaller
 			va_end(Args);
 
 			Env->DeleteLocalRef(Class);
-
-			return MoveTemp(Result);
+			return Result;
 		}
 
-		UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+		UE_LOG(LogAndroidNative, Error, TEXT("Failed to get Java Environment! Check if JavaVM is valid"));
 #else
 		UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support calling Java methods"));
 #endif

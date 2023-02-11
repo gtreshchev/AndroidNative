@@ -24,7 +24,7 @@ TArray<bool> AndroidNative_JavaConverter::FromJavaBoolArray(const jbooleanArray&
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'jbooleanArray' to 'TArray<bool>'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
 		TArray<bool> BoolArray;
 
@@ -36,10 +36,10 @@ TArray<bool> AndroidNative_JavaConverter::FromJavaBoolArray(const jbooleanArray&
 			BoolArray.Add(FromJavaBool(JavaBoolArrayPtr[Index]));
 		}
 
-		return MoveTemp(BoolArray);
+		return BoolArray;
 	}
 
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));
 #endif
@@ -64,7 +64,7 @@ jbooleanArray AndroidNative_JavaConverter::ToJavaBoolArray(const TArray<bool>& B
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'TArray<bool>' to 'jbooleanArray'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
 		jbooleanArray JavaBoolArray = Env->NewBooleanArray(BoolArray.Num());
 		jboolean* JavaBoolArrayPtr{Env->GetBooleanArrayElements(JavaBoolArray, nullptr)};
@@ -74,10 +74,10 @@ jbooleanArray AndroidNative_JavaConverter::ToJavaBoolArray(const TArray<bool>& B
 			JavaBoolArrayPtr[Index] = ToJavaBool(BoolArray[Index]);
 		}
 
-		return MoveTemp(JavaBoolArray);
+		return JavaBoolArray;
 	}
 
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));
 #endif
@@ -102,7 +102,7 @@ TArray<uint8> AndroidNative_JavaConverter::FromJavaByteArray(const jbyteArray Ja
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'jbyteArray' to 'TArray<uint8>'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
 		TArray<uint8> ByteArray;
 
@@ -114,10 +114,10 @@ TArray<uint8> AndroidNative_JavaConverter::FromJavaByteArray(const jbyteArray Ja
 			ByteArray.Add(FromJavaByte(JavaByteArrayPtr[Index]));
 		}
 
-		return MoveTemp(ByteArray);
+		return ByteArray;
 	}
 
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));
 #endif
@@ -142,7 +142,7 @@ jbyteArray AndroidNative_JavaConverter::ToJavaByteArray(const TArray<uint8>& Byt
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'TArray<uint8>' to 'jbyteArray'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
 		jbyteArray JavaByteArray = Env->NewByteArray(ByteArray.Num());
 		jbyte* JavaByteArrayPtr{Env->GetByteArrayElements(JavaByteArray, nullptr)};
@@ -152,10 +152,10 @@ jbyteArray AndroidNative_JavaConverter::ToJavaByteArray(const TArray<uint8>& Byt
 			JavaByteArrayPtr[Index] = ToJavaByte(ByteArray[Index]);
 		}
 
-		return MoveTemp(JavaByteArray);
+		return JavaByteArray;
 	}
 
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));
 #endif
@@ -180,7 +180,7 @@ TArray<UTF16CHAR> AndroidNative_JavaConverter::FromJavaCharArray(const jcharArra
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'jcharArray' to 'TArray<UTF16CHAR>'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
 		TArray<UTF16CHAR> CharArray;
 
@@ -192,10 +192,10 @@ TArray<UTF16CHAR> AndroidNative_JavaConverter::FromJavaCharArray(const jcharArra
 			CharArray.Add(FromJavaChar(JavaCharArrayPtr[Index]));
 		}
 
-		return MoveTemp(CharArray);
+		return CharArray;
 	}
 
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));
 #endif
@@ -220,7 +220,7 @@ jcharArray AndroidNative_JavaConverter::ToJavaCharArray(const TArray<UTF16CHAR>&
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'TArray<UTF16CHAR>' to 'jcharArray'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
 		jcharArray JavaCharArray{Env->NewCharArray(CharArray.Num())};
 		jchar* JavaCharArrayPtr{Env->GetCharArrayElements(JavaCharArray, nullptr)};
@@ -230,13 +230,13 @@ jcharArray AndroidNative_JavaConverter::ToJavaCharArray(const TArray<UTF16CHAR>&
 			JavaCharArrayPtr[Index] = ToJavaChar(CharArray[Index]);
 		}
 
-		return MoveTemp(JavaCharArray);
+		return JavaCharArray;
 	}
 
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));
 #endif
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 
 	return jcharArray{};
 }
@@ -258,22 +258,22 @@ TArray<short> AndroidNative_JavaConverter::FromJavaShortArray(const jshortArray&
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'jshortArray' to 'TArray<short>'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
 		TArray<short> ShortArray;
 
-		const jshort* JavaShortArrayPtr{Env->GetShortArrayElements(JavaShortArray, nullptr)};
-		const jsize ArrayLength{Env->GetArrayLength(JavaShortArray)};
+		const jshort* JavaShortArrayPtr = Env->GetShortArrayElements(JavaShortArray, nullptr);
+		const jsize ArrayLength = Env->GetArrayLength(JavaShortArray);
 
 		for (jsize Index = 0; Index < ArrayLength; ++Index)
 		{
 			ShortArray.Add(FromJavaShort(JavaShortArrayPtr[Index]));
 		}
 
-		return MoveTemp(ShortArray);
+		return ShortArray;
 	}
 
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));
 #endif
@@ -298,20 +298,20 @@ jshortArray AndroidNative_JavaConverter::ToJavaShortArray(const TArray<short>& S
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'TArray<short>' to 'jshortArray'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
-		jshortArray JavaShortArray{Env->NewShortArray(ShortArray.Num())};
-		jshort* JavaShortArrayPtr{Env->GetShortArrayElements(JavaShortArray, nullptr)};
+		jshortArray JavaShortArray = Env->NewShortArray(ShortArray.Num());
+		jshort* JavaShortArrayPtr = Env->GetShortArrayElements(JavaShortArray, nullptr);
 
 		for (TArray<short>::SizeType Index = 0; Index < ShortArray.Num(); ++Index)
 		{
 			JavaShortArrayPtr[Index] = ToJavaShort(ShortArray[Index]);
 		}
 
-		return MoveTemp(JavaShortArray);
+		return JavaShortArray;
 	}
 
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));
 #endif
@@ -336,22 +336,22 @@ TArray<int32> AndroidNative_JavaConverter::FromJavaIntArray(const jintArray& Jav
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'jintArray' to 'TArray<int32>'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
 		TArray<int32> IntArray;
 
-		const jint* JavaIntArrayPtr{Env->GetIntArrayElements(JavaIntArray, nullptr)};
-		const jsize ArrayLength{Env->GetArrayLength(JavaIntArray)};
+		const jint* JavaIntArrayPtr = Env->GetIntArrayElements(JavaIntArray, nullptr);
+		const jsize ArrayLength = Env->GetArrayLength(JavaIntArray);
 
 		for (jsize Index = 0; Index < ArrayLength; ++Index)
 		{
 			IntArray.Add(FromJavaInt(JavaIntArrayPtr[Index]));
 		}
 
-		return MoveTemp(IntArray);
+		return IntArray;
 	}
 
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));
 #endif
@@ -376,20 +376,20 @@ jintArray AndroidNative_JavaConverter::ToJavaIntArray(const TArray<int32>& IntAr
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'TArray<int32>' to 'jintArray'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
-		jintArray JavaIntArray{Env->NewIntArray(IntArray.Num())};
-		jint* JavaIntArrayPtr{Env->GetIntArrayElements(JavaIntArray, nullptr)};
+		jintArray JavaIntArray = Env->NewIntArray(IntArray.Num());
+		jint* JavaIntArrayPtr = Env->GetIntArrayElements(JavaIntArray, nullptr);
 
 		for (TArray<int32>::SizeType Index = 0; Index < IntArray.Num(); ++Index)
 		{
 			JavaIntArrayPtr[Index] = ToJavaInt(IntArray[Index]);
 		}
 
-		return MoveTemp(JavaIntArray);
+		return JavaIntArray;
 	}
 
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));
 #endif
@@ -414,22 +414,22 @@ TArray<long> AndroidNative_JavaConverter::FromJavaLongArray(const jlongArray& Ja
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'jlongArray' to 'TArray<long>'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
 		TArray<long> LongArray;
 
-		const jlong* JavaLongArrayPtr{Env->GetLongArrayElements(JavaLongArray, nullptr)};
-		const jsize ArrayLength{Env->GetArrayLength(JavaLongArray)};
+		const jlong* JavaLongArrayPtr = Env->GetLongArrayElements(JavaLongArray, nullptr);
+		const jsize ArrayLength = Env->GetArrayLength(JavaLongArray);
 
 		for (jsize Index = 0; Index < ArrayLength; ++Index)
 		{
 			LongArray.Add(FromJavaLong(JavaLongArrayPtr[Index]));
 		}
 
-		return MoveTemp(LongArray);
+		return LongArray;
 	}
 
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));
 #endif
@@ -454,20 +454,20 @@ jlongArray AndroidNative_JavaConverter::ToJavaLongArray(const TArray<long>& Long
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'TArray<long>' to 'jlongArray'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
-		jlongArray JavaLongArray{Env->NewLongArray(LongArray.Num())};
-		jlong* JavaLongArrayPtr{Env->GetLongArrayElements(JavaLongArray, nullptr)};
+		jlongArray JavaLongArray = Env->NewLongArray(LongArray.Num());
+		jlong* JavaLongArrayPtr = Env->GetLongArrayElements(JavaLongArray, nullptr);
 
 		for (TArray<long>::SizeType Index = 0; Index < LongArray.Num(); ++Index)
 		{
 			JavaLongArrayPtr[Index] = ToJavaLong(LongArray[Index]);
 		}
 
-		return MoveTemp(JavaLongArray);
+		return JavaLongArray;
 	}
 
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));
 #endif
@@ -492,22 +492,22 @@ TArray<float> AndroidNative_JavaConverter::FromJavaFloatArray(const jfloatArray&
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'jfloatArray' to 'TArray<float>'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
 		TArray<float> FloatArray;
 
-		const jfloat* JavaFloatArrayPtr{Env->GetFloatArrayElements(JavaFloatArray, nullptr)};
-		const jsize ArrayLength{Env->GetArrayLength(JavaFloatArray)};
+		const jfloat* JavaFloatArrayPtr = Env->GetFloatArrayElements(JavaFloatArray, nullptr);
+		const jsize ArrayLength = Env->GetArrayLength(JavaFloatArray);
 
 		for (jsize Index = 0; Index < ArrayLength; ++Index)
 		{
 			FloatArray.Add(FromJavaFloat(JavaFloatArrayPtr[Index]));
 		}
 
-		return MoveTemp(FloatArray);
+		return FloatArray;
 	}
 
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));
 #endif
@@ -532,20 +532,20 @@ jfloatArray AndroidNative_JavaConverter::ToJavaFloatArray(const TArray<float>& F
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'TArray<float>' to 'jfloatArray'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
-		jfloatArray JavaFloatArray{Env->NewFloatArray(FloatArray.Num())};
-		jfloat* JavaFloatArrayPtr{Env->GetFloatArrayElements(JavaFloatArray, nullptr)};
+		jfloatArray JavaFloatArray = Env->NewFloatArray(FloatArray.Num());
+		jfloat* JavaFloatArrayPtr = Env->GetFloatArrayElements(JavaFloatArray, nullptr);
 
 		for (TArray<float>::SizeType Index = 0; Index < FloatArray.Num(); ++Index)
 		{
 			JavaFloatArrayPtr[Index] = ToJavaFloat(FloatArray[Index]);
 		}
 
-		return MoveTemp(JavaFloatArray);
+		return JavaFloatArray;
 	}
 
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));
 #endif
@@ -570,22 +570,22 @@ TArray<double> AndroidNative_JavaConverter::FromJavaDoubleArray(const jdoubleArr
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'jdoubleArray' to 'TArray<double>'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
 		TArray<double> DoubleArray;
 
-		const jdouble* JavaDoubleArrayPtr{Env->GetDoubleArrayElements(JavaDoubleArray, nullptr)};
-		const jsize ArrayLength{Env->GetArrayLength(JavaDoubleArray)};
+		const jdouble* JavaDoubleArrayPtr = Env->GetDoubleArrayElements(JavaDoubleArray, nullptr);
+		const jsize ArrayLength = Env->GetArrayLength(JavaDoubleArray);
 
 		for (jsize Index = 0; Index < ArrayLength; ++Index)
 		{
 			DoubleArray.Add(FromJavaDouble(JavaDoubleArrayPtr[Index]));
 		}
 
-		return MoveTemp(DoubleArray);
+		return DoubleArray;
 	}
 
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));
 #endif
@@ -610,20 +610,20 @@ jdoubleArray AndroidNative_JavaConverter::ToJavaDoubleArray(const TArray<double>
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'TArray<double>' to 'jdoubleArray'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
-		jdoubleArray JavaDoubleArray{Env->NewDoubleArray(DoubleArray.Num())};
-		jdouble* JavaDoubleArrayPtr{Env->GetDoubleArrayElements(JavaDoubleArray, nullptr)};
+		jdoubleArray JavaDoubleArray = Env->NewDoubleArray(DoubleArray.Num());
+		jdouble* JavaDoubleArrayPtr = Env->GetDoubleArrayElements(JavaDoubleArray, nullptr);
 
 		for (TArray<double>::SizeType Index = 0; Index < DoubleArray.Num(); ++Index)
 		{
 			JavaDoubleArrayPtr[Index] = ToJavaDouble(DoubleArray[Index]);
 		}
 
-		return MoveTemp(JavaDoubleArray);
+		return JavaDoubleArray;
 	}
 
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));
 #endif
@@ -636,18 +636,15 @@ FString AndroidNative_JavaConverter::FromJavaString(const jstring& JavaString)
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'jstring' to 'FString'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
-		const char* Characters{Env->GetStringUTFChars(JavaString, 0)};
-
+		const char* Characters = Env->GetStringUTFChars(JavaString, 0);
 		FString ReturnString(UTF8_TO_TCHAR(Characters));
-
 		Env->ReleaseStringUTFChars(JavaString, Characters);
-
-		return MoveTemp(ReturnString);
+		return ReturnString;
 	}
 
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));
 #endif
@@ -660,23 +657,20 @@ TArray<FString> AndroidNative_JavaConverter::FromJavaStringArray(const jobjectAr
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'jobjectArray' to 'TArray<FString>'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
 		TArray<FString> StringArray;
-
-		const jsize ArrayLength{Env->GetArrayLength(JavaStringArray)};
-
+		const jsize ArrayLength = Env->GetArrayLength(JavaStringArray);
 		for (jsize Index = 0; Index < ArrayLength; ++Index)
 		{
-			const jstring& JavaString{static_cast<jstring>(Env->GetObjectArrayElement(JavaStringArray, Index))};
-
+			const jstring JavaString{static_cast<jstring>(Env->GetObjectArrayElement(JavaStringArray, Index))};
 			StringArray.Add(FromJavaString(JavaString));
 		}
 
-		return MoveTemp(StringArray);
+		return StringArray;
 	}
 
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));
 #endif
@@ -689,17 +683,15 @@ jstring AndroidNative_JavaConverter::ToJavaString(const FString& String)
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'FString' to 'jstring'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
-		const jstring& LocalJavaString{Env->NewStringUTF(TCHAR_TO_UTF8(*String))};
-		const jstring& GlobalJavaString{static_cast<jstring>(Env->NewGlobalRef(LocalJavaString))};
-
+		const jstring LocalJavaString = Env->NewStringUTF(TCHAR_TO_UTF8(*String));
+		const jstring GlobalJavaString{static_cast<jstring>(Env->NewGlobalRef(LocalJavaString))};
 		Env->DeleteLocalRef(LocalJavaString);
-
 		return GlobalJavaString;
 	}
 
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));
 #endif
@@ -712,19 +704,18 @@ jobjectArray AndroidNative_JavaConverter::ToJavaStringArray(const TArray<FString
 	UE_LOG(LogAndroidNative, Log, TEXT("Converting 'TArray<FString>' to 'jobjectArray'"));
 
 #if PLATFORM_ANDROID
-	if (JNIEnv* Env{FAndroidApplication::GetJavaEnv()})
+	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
 		jobjectArray JavaStringArray{Env->NewObjectArray(StringArray.Num(), FJavaWrapper::JavaStringClass, nullptr)};
-
 		for (TArray<FString>::SizeType Index = 0; Index < StringArray.Num(); ++Index)
 		{
 			Env->SetObjectArrayElement(JavaStringArray, Index, ToJavaString(StringArray[Index]));
 		}
 
-		return MoveTemp(JavaStringArray);
+		return JavaStringArray;
 	}
 
-	UE_LOG(LogAndroidNative, Error, TEXT("Can't get Java Environment! Check if JavaVM is valid"));
+	UE_LOG(LogAndroidNative, Error, TEXT("Failed to Java Environment! Check if JavaVM is valid"));
 
 #else
 	UE_LOG(LogAndroidNative, Error, TEXT("The platform you are running on does not support Java types"));

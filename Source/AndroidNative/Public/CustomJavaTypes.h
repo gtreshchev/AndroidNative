@@ -3,11 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-
 #include "JavaConvert.h"
 
 /**
- * Used when there are custom objects to pass
+ * Used when a custom Java object needs to be passed as an argument with a custom signature
  */
 struct FCustomJavaArgument
 {
@@ -56,13 +55,13 @@ template <typename AnyType>
 using TIsCustomJavaArgument = TIsDerivedFrom<AnyType, FCustomJavaArgument>;
 
 /**
- * Enable if type matches custom java type
+ * Enable if the type is a custom Java argument
  */
 template <typename AnyType>
 using TEnableIfCustomJavaArgument = typename TEnableIf<TIsCustomJavaArgument<AnyType>::Value, bool>::Type;
 
 /**
- * Enable if type does not match custom java type
+ * Enable if the type is not a custom Java argument
  */
 template <typename AnyType>
 using TEnableIfNotCustomJavaArgument = typename TEnableIf<!TIsCustomJavaArgument<AnyType>::Value, bool>::Type;

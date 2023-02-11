@@ -41,7 +41,7 @@ struct FBaseDeviceInfo
 };
 
 /**
- * Android theme
+ * Android themes
  */
 UENUM(BlueprintType, Category = "Android Native Library|Enumerators")
 enum class EAndroidTheme : uint8
@@ -74,25 +74,25 @@ public:
 	static bool IsInternetAvailable();
 
 	/**
-	 * Should have android.permission.ACCESS_FINE_LOCATION and android.permission.INTERNET permissions
+	 * Retrieve the device's location, requires "android.permission.ACCESS_FINE_LOCATION" and "android.permission.INTERNET" permissions
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Android Native Library|Basic")
 	static FString GetGeoLocation();
 
 	/**
-	 * Get base information about the device
+	 * Obtain basic information about the device
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Android Native Library|Basic")
 	static FBaseDeviceInfo GetBaseDeviceInfo();
 
 	/**
-	 * Get a folder to store files in device ("storage/emulated/0/Android/data/data/%APP_PACKAGE_NAME%/")
+	 * Get the folder path for storing temporary files on the device ("storage/emulated/0/Android/data/data/%APP_PACKAGE_NAME%/")
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Android Native Library|Basic")
 	static FString GetExternalPath();
 
 	/**
-	 * Get the system theme currently used in device
+	 * Retrieve the current system theme used in the device
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Android Native Library|Basic")
 	static EAndroidTheme GetCurrentSystemTheme();

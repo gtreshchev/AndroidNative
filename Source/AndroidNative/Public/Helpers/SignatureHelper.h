@@ -4,11 +4,12 @@
 
 #include "AndroidNativeDefines.h"
 
+#include "Misc/CString.h"
 #include "JavaConvert.h"
 #include "CustomJavaTypes.h"
 
 /**
- * Helper in working with Java VM's signatures
+ * Helper in working with the Java VM's signatures
  */
 namespace SignatureHelper
 {
@@ -57,7 +58,7 @@ namespace SignatureHelper
 	static FORCEINLINE TEnableIfSame<PassedType, double, const ANSICHAR*>
 	GetTypeSignature() { return "D"; }
 
-	/** Get the signature for Int type */
+	/** Get the signature for FString type */
 	template <typename PassedType>
 	static FORCEINLINE TEnableIfSame<PassedType, FString, const ANSICHAR*>
 	GetTypeSignature() { return "Ljava/lang/String;"; }
@@ -111,15 +112,12 @@ namespace SignatureHelper
 	static FString GetMethodSignature(const Args& ...Arguments)
 	{
 		FString MethodSignature;
-
 		{
-			MethodSignature = "(";
+			MethodSignature = TEXT("(");
 			GetTypeSignatures(MethodSignature, Arguments...);
-			MethodSignature += ")";
+			MethodSignature += TEXT(")");
 		}
-
 		MethodSignature += GetTypeSignature<MethodType>();
-
-		return MoveTemp(MethodSignature);
+		return MethodSignature;
 	}
 };
