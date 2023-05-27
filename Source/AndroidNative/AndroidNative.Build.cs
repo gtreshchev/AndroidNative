@@ -12,8 +12,7 @@ public class AndroidNative : ModuleRules
 
 		if (Target.Platform == UnrealTargetPlatform.Android)
 		{
-			PrivateDependencyModuleNames.Add("Launch");
-			
+			PublicDependencyModuleNames.Add("Launch");
 			AdditionalPropertiesForReceipt.Add("AndroidPlugin", Path.Combine(ModuleDirectory, "AndroidNative_UPL_Android.xml"));
 		}
 
