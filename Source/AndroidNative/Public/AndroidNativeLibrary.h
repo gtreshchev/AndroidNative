@@ -22,7 +22,7 @@ struct FBaseDeviceInfo
 	FString OSVersion;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Android Native Library|Stuctures")
-	int32 SDKVersion;
+	int32 SDKVersion = -1;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Android Native Library|Stuctures")
 	FString Brand;
