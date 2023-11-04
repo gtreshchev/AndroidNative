@@ -49,7 +49,7 @@ typedef _jobject*       jweak;
 
 namespace FJavaWrapper
 {
-	jobject GameActivityThis;
+	ANDROIDNATIVE_API jobject GameActivityThis;
 }
 #endif
 
@@ -59,124 +59,124 @@ namespace FJavaWrapper
 namespace AndroidNative_JavaConverter
 {
 	/** Convert jboolean to bool */
-	bool FromJavaBool(const jboolean JavaBool);
+	ANDROIDNATIVE_API bool FromJavaBool(const jboolean JavaBool);
 
 	/** Convert jbooleanArray to TArray<bool> */
-	TArray<bool> FromJavaBoolArray(const jbooleanArray& JavaBoolArray);
+	ANDROIDNATIVE_API TArray<bool> FromJavaBoolArray(const jbooleanArray& JavaBoolArray);
 
 	/** Convert bool to jboolean */
-	jboolean ToJavaBool(const bool Bool);
+	ANDROIDNATIVE_API jboolean ToJavaBool(const bool Bool);
 
 	/** Convert TArray<bool> to jbooleanArray */
-	jbooleanArray ToJavaBoolArray(const TArray<bool>& BoolArray);
+	ANDROIDNATIVE_API jbooleanArray ToJavaBoolArray(const TArray<bool>& BoolArray);
 
 
 	/** Convert jbyte to uint8 */
-	uint8 FromJavaByte(const jbyte JavaByte);
+	ANDROIDNATIVE_API uint8 FromJavaByte(const jbyte JavaByte);
 
 	/** Convert jbyteArray to TArray<uint8> */
-	TArray<uint8> FromJavaByteArray(const jbyteArray JavaByteArray);
+	ANDROIDNATIVE_API TArray<uint8> FromJavaByteArray(const jbyteArray JavaByteArray);
 
 	/** Convert uint8 to jbyte */
-	jbyte ToJavaByte(const uint8 Byte);
+	ANDROIDNATIVE_API jbyte ToJavaByte(const uint8 Byte);
 
 	/** Convert TArray<uint8> to jbyteArray */
-	jbyteArray ToJavaByteArray(const TArray<uint8>& ByteArray);
+	ANDROIDNATIVE_API jbyteArray ToJavaByteArray(const TArray<uint8>& ByteArray);
 
 
 	/** Convert jchar to UTF16CHAR */
-	UTF16CHAR FromJavaChar(const jchar JavaChar);
+	ANDROIDNATIVE_API UTF16CHAR FromJavaChar(const jchar JavaChar);
 
 	/** Convert jcharArray to TArray<UTF16CHAR> */
-	TArray<UTF16CHAR> FromJavaCharArray(const jcharArray& JavaCharArray);
+	ANDROIDNATIVE_API TArray<UTF16CHAR> FromJavaCharArray(const jcharArray& JavaCharArray);
 
 	/** Convert UTF16CHAR to jchar */
-	jchar ToJavaChar(const UTF16CHAR Char);
+	ANDROIDNATIVE_API jchar ToJavaChar(const UTF16CHAR Char);
 
 	/** Convert TArray<UTF16CHAR> to jcharArray */
-	jcharArray ToJavaCharArray(const TArray<UTF16CHAR>& CharArray);
+	ANDROIDNATIVE_API jcharArray ToJavaCharArray(const TArray<UTF16CHAR>& CharArray);
 
 
 	/** Convert jshort to short */
-	short FromJavaShort(const jshort JavaShort);
+	ANDROIDNATIVE_API short FromJavaShort(const jshort JavaShort);
 
 	/** Convert jshortArray to TArray<short> */
-	TArray<short> FromJavaShortArray(const jshortArray& JavaShortArray);
+	ANDROIDNATIVE_API TArray<short> FromJavaShortArray(const jshortArray& JavaShortArray);
 
 	/** Convert short to jshort */
-	jshort ToJavaShort(const short Short);
+	ANDROIDNATIVE_API jshort ToJavaShort(const short Short);
 
 	/** Convert TArray<short> to jshortArray */
-	jshortArray ToJavaShortArray(const TArray<short>& ShortArray);
+	ANDROIDNATIVE_API jshortArray ToJavaShortArray(const TArray<short>& ShortArray);
 
 
 	/** Convert jint to int32 */
-	int32 FromJavaInt(const jint JavaInt);
+	ANDROIDNATIVE_API int32 FromJavaInt(const jint JavaInt);
 
 	/** Convert jintArray to TArray<int32> */
-	TArray<int32> FromJavaIntArray(const jintArray& JavaIntArray);
+	ANDROIDNATIVE_API TArray<int32> FromJavaIntArray(const jintArray& JavaIntArray);
 
 	/** Convert int32 to jint */
-	jint ToJavaInt(const int32 Int);
+	ANDROIDNATIVE_API jint ToJavaInt(const int32 Int);
 
 	/** Convert TArray<int32> to jintArray */
-	jintArray ToJavaIntArray(const TArray<int32>& IntArray);
+	ANDROIDNATIVE_API jintArray ToJavaIntArray(const TArray<int32>& IntArray);
 
 
 	/** Convert jlong to long */
-	long FromJavaLong(const jlong JavaLong);
+	ANDROIDNATIVE_API long FromJavaLong(const jlong JavaLong);
 
 	/** Convert jlongArray to TArray<long> */
-	TArray<long> FromJavaLongArray(const jlongArray& JavaLongArray);
+	ANDROIDNATIVE_API TArray<long> FromJavaLongArray(const jlongArray& JavaLongArray);
 
 	/** Convert long to jlong */
-	jlong ToJavaLong(const long Long);
+	ANDROIDNATIVE_API jlong ToJavaLong(const long Long);
 
 	/** Convert TArray<long> to jlongArray */
-	jlongArray ToJavaLongArray(const TArray<long>& LongArray);
+	ANDROIDNATIVE_API jlongArray ToJavaLongArray(const TArray<long>& LongArray);
 
 
 	/** Convert jfloat to float */
-	float FromJavaFloat(const jfloat JavaFloat);
+	ANDROIDNATIVE_API float FromJavaFloat(const jfloat JavaFloat);
 
 	/** Convert jfloatArray to TArray<float> */
-	TArray<float> FromJavaFloatArray(const jfloatArray& JavaFloatArray);
+	ANDROIDNATIVE_API TArray<float> FromJavaFloatArray(const jfloatArray& JavaFloatArray);
 
 	/** Convert float to jfloat */
-	jfloat ToJavaFloat(const float Float);
+	ANDROIDNATIVE_API jfloat ToJavaFloat(const float Float);
 
 	/** Convert TArray<float> to jfloatArray */
-	jfloatArray ToJavaFloatArray(const TArray<float>& FloatArray);
+	ANDROIDNATIVE_API jfloatArray ToJavaFloatArray(const TArray<float>& FloatArray);
 	
 
 	/** Convert jdouble to double */
-	double FromJavaDouble(const jdouble JavaDouble);
+	ANDROIDNATIVE_API double FromJavaDouble(const jdouble JavaDouble);
 
 	/** Convert jdoubleArray to TArray<double> */
-	TArray<double> FromJavaDoubleArray(const jdoubleArray& JavaDoubleArray);
+	ANDROIDNATIVE_API TArray<double> FromJavaDoubleArray(const jdoubleArray& JavaDoubleArray);
 
 	/** Convert double to jdouble */
-	jdouble ToJavaDouble(const double Double);
+	ANDROIDNATIVE_API jdouble ToJavaDouble(const double Double);
 
 	/** Convert TArray<double> to jdoubleArray */
-	jdoubleArray ToJavaDoubleArray(const TArray<double>& DoubleArray);
+	ANDROIDNATIVE_API jdoubleArray ToJavaDoubleArray(const TArray<double>& DoubleArray);
 
 
 	/** Convert jstring to FString */
-	FString FromJavaString(const jstring& JavaString);
+	ANDROIDNATIVE_API FString FromJavaString(const jstring& JavaString);
 
 	/** Convert jobjectArray to TArray<FString> */
-	TArray<FString> FromJavaStringArray(const jobjectArray& JavaStringArray);
+	ANDROIDNATIVE_API TArray<FString> FromJavaStringArray(const jobjectArray& JavaStringArray);
 
 	/** Convert FString to jstring */
-	jstring ToJavaString(const FString& String);
+	ANDROIDNATIVE_API jstring ToJavaString(const FString& String);
 
 	/** Convert TCHAR* to jstring */
-	jstring FORCEINLINE ToJavaString(const TCHAR* String)
+	ANDROIDNATIVE_API jstring FORCEINLINE ToJavaString(const TCHAR* String)
 	{
 		return ToJavaString(FString(String));
 	}
 
 	/** Convert TArray<FString> to jobjectArray */
-	jobjectArray ToJavaStringArray(const TArray<FString>& StringArray);
+	ANDROIDNATIVE_API jobjectArray ToJavaStringArray(const TArray<FString>& StringArray);
 }
