@@ -1,5 +1,7 @@
 // Georgy Treshchev 2023.
-// FF Reality 
+// FF Reality
+
+// Note: Save this file in UTF-8 without BOM format to ensure successful compilation
 
 package com.Plugins.AndroidNative;
 
