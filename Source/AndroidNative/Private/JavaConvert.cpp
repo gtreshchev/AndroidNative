@@ -5,6 +5,11 @@
 
 #if PLATFORM_ANDROID
 #include "Android/AndroidApplication.h"
+#else
+namespace FJavaWrapper
+{
+	jobject GameActivityThis = jobject{};
+}
 #endif
 
 bool AndroidNative_JavaConverter::FromJavaBool(const jboolean JavaBool)

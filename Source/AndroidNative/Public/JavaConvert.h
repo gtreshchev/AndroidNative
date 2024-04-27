@@ -49,7 +49,7 @@ typedef _jobject*       jweak;
 
 namespace FJavaWrapper
 {
-	ANDROIDNATIVE_API jobject GameActivityThis;
+	extern ANDROIDNATIVE_API jobject GameActivityThis;
 }
 #endif
 
