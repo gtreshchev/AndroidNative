@@ -75,7 +75,7 @@ namespace SignatureHelper
 	/** Get the signature for the type contained in TArray */
 	template <typename PassedType>
 	static FORCEINLINE typename TEnableIf<TIsTArray<PassedType>::Value, const ANSICHAR*>::Type
-	GetTypeSignature() { return TCHAR_TO_ANSI(*FString::Printf(TEXT("[%s"), *FString(GetTypeSignature<typename PassedType::ElementType>()))); }
+	GetTypeSignature() { return const_cast<ANSICHAR*>(StringCast<ANSICHAR>(*FString::Printf(TEXT("[%s"), *FString(GetTypeSignature<typename PassedType::ElementType>()))).Get()); }
 
 	/**
 	 * In case no arguments and type are specified

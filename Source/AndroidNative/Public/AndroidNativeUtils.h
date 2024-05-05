@@ -62,6 +62,6 @@ public:
 	static ReturnType CallJavaStaticMethod(const ANSICHAR* ClassName, const ANSICHAR* MethodName, Args ... args)
 	{
 		const FString MethodSignature{SignatureHelper::GetMethodSignature<ReturnType>(args...)};
-		return StaticNativeCaller::CallJavaStaticMethod<ReturnType>(ClassName, MethodName, TCHAR_TO_ANSI(*MethodSignature), ArgumentsConverter::ConvertArgument(args)...);
+		return StaticNativeCaller::CallJavaStaticMethod<ReturnType>(ClassName, MethodName, const_cast<ANSICHAR*>(StringCast<ANSICHAR>(*MethodSignature).Get()), ArgumentsConverter::ConvertArgument(args)...);
 	}
 };

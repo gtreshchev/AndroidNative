@@ -644,7 +644,7 @@ FString AndroidNative_JavaConverter::FromJavaString(const jstring& JavaString)
 	if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
 	{
 		const char* Characters = Env->GetStringUTFChars(JavaString, 0);
-		FString ReturnString(UTF8_TO_TCHAR(Characters));
+		FString ReturnString(const_cast<TCHAR*>(StringCast<TCHAR>(Characters).Get()));
 		Env->ReleaseStringUTFChars(JavaString, Characters);
 		return ReturnString;
 	}
