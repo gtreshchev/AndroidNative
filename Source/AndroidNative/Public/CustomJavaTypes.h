@@ -8,7 +8,7 @@
 /**
  * Used when a custom Java object needs to be passed as an argument with a custom signature
  */
-ANDROIDNATIVE_API struct FCustomJavaArgument
+struct ANDROIDNATIVE_API FCustomJavaArgument
 {
 	FCustomJavaArgument(jobject Value, FString Signature)
 		: Value(Value), Signature(Signature)
@@ -33,7 +33,7 @@ protected:
 /**
  * Used to pass game activity
  */
-ANDROIDNATIVE_API struct FAndroidGameActivity : FCustomJavaArgument
+struct ANDROIDNATIVE_API FAndroidGameActivity : FCustomJavaArgument
 {
 	/** Use this constructor if you want to use the default game activity */
 	FAndroidGameActivity()
