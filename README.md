@@ -14,7 +14,7 @@
     Advanced interaction with Android device
     <br/>
     <br/>
-    <a href="https://github.com/gtreshchev/AndroidNative/wiki"><strong>Explore the docs »</strong></a>
+    <a href="https://docs.georgy.dev/android-native/overview"><strong>Explore the docs »</strong></a>
     .
 	<br/>
     <br/>
