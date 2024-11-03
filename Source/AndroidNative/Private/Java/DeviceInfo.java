@@ -21,6 +21,9 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import android.content.res.Configuration;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+
 // NSD Service
 import android.os.IBinder;
 import android.app.Service;
@@ -168,5 +171,19 @@ public class DeviceInfo {
 	@Keep
 	public static String GetLanguageCode()	{
 		return ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration()).get(0).getDefault().toLanguageTag();
+	}
+	
+	@Keep
+	public static void CopyToClipboard(final Activity activity, String text){
+	    Context context = activity;
+	    
+	    // Get the ClipboardManager service
+        ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+                
+        // Create a new ClipData with the specified text
+        ClipData clip = ClipData.newPlainText("label", text);
+                
+        // Set the clipboard's primary clip
+        clipboard.setPrimaryClip(clip);
 	}
 }
