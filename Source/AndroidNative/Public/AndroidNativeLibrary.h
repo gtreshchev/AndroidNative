@@ -94,4 +94,10 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Android Native Library|Basic")
 	static EAndroidTheme GetCurrentSystemTheme();
+
+	/**
+	 * Copy text to Android clipboard
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Android Native Library|Basic")
+	static void CopyTextToClipboard(const FString& InText);
 };

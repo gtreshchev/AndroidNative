@@ -66,3 +66,8 @@ FString UAndroidNativeLibrary::GetExternalPath()
 {
 	return AndroidNativeUtils::CallJavaStaticMethod<FString>(DeviceInfoClassName, "GetExternalPath", FAndroidGameActivity());
 }
+
+void UAndroidNativeLibrary::CopyTextToClipboard(const FString& InText)
+{
+	AndroidNativeUtils::CallJavaStaticMethod<void>(DeviceInfoClassName, "CopyToClipboard", FAndroidGameActivity(), InText);
+}
